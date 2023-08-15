@@ -26,7 +26,7 @@
 ```
 Author Ki-lian 
 Version 1.0.0
-Blogs
+Blogs Entity Beispielprojekt
 http://localhost:3000/blogs
 Swagger-UI
 http://localhost:3000/api
