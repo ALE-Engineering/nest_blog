@@ -14,6 +14,10 @@ export class BlogService {
     return this.blogRepository.find();
   }
 
+  async findOneBy(id: number): Promise<Blog | undefined> {
+    return this.blogRepository.findOneBy({id});
+  }
+
   async create(blog: Blog): Promise<Blog> {
     return this.blogRepository.save(blog);
   }

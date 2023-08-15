@@ -11,6 +11,11 @@ export class BlogController {
     return this.blogService.findAll();
   }
 
+  @Get(':id')
+  async findById(@Param('id')id: number): Promise<Blog>{
+    return this.blogService.findOneBy(id);
+  }
+
   @Post()
   async create(@Body() blog: Blog): Promise<Blog> {
     return this.blogService.create(blog);
