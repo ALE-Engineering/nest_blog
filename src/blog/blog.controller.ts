@@ -1,4 +1,4 @@
-import {Controller, Get, Post, Body, Param, Put, Patch, Delete} from '@nestjs/common';
+import {Controller, Get, Post, Body, Param, Put, Patch, Delete, NotFoundException} from '@nestjs/common';
 import { BlogService } from './blog.service';
 import { Blog } from './blog.entity';
 
@@ -19,6 +19,18 @@ export class BlogController {
   @Post()
   async create(@Body() blog: Blog): Promise<Blog> {
     return this.blogService.create(blog);
+  }
+
+  @Put(':id')
+  async update(@Param('id') id: number, @Body() blog: Blog): Promise<Blog> {
+    try{
+      return await this.blogService.updateById(id, blog);
+    }catch (error){
+      if(error instanceof NotFoundException){
+        throw new NotFoundException(error.message);
+      }
+      throw error;
+    }
   }
 
   @Delete(':id')
